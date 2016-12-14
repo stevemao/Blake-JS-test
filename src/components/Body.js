@@ -15,10 +15,19 @@ class Body extends React.Component {
       <h2 style={h2Style}>{question.question}</h2>
       <ol>
         {question.answers.map((answer, index) => {
+          let checked;
+          const answersOnPage = this.props.answers[this.props.page];
+
+          if (answersOnPage) {
+            checked = answersOnPage[question.id] === index;
+          } else {
+            checked = false;
+          }
+
           return (
             <li key={question.id + ' ' + index}>
               <label>
-              <input type="radio" name={question.id} value={index} onChange={(event) => {
+              <input type="radio" name={question.id} value={index} checked={checked} onChange={(event) => {
                 this.props.onChange(parseInt(event.currentTarget.value), question.id, this.props.page);
               }} />
                 <span style={labelStyle}>
