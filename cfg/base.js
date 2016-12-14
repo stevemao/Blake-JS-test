@@ -37,11 +37,11 @@ module.exports = {
     alias: {
       actions: `${defaultSettings.srcPath}/actions/`,
       components: `${defaultSettings.srcPath}/components/`,
-      containers: `${defaultSettings.srcPath}/containers/`,
-      reducers: `${defaultSettings.srcPath}/reducers/`,
-      store: `${defaultSettings.srcPath}/store/`,
+      sources: `${defaultSettings.srcPath}/sources/`,
+      stores: `${defaultSettings.srcPath}/stores/`,
       styles: `${defaultSettings.srcPath}/styles/`,
-      config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
+      config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV,
+      'react/lib/ReactMount': 'react-dom/lib/ReactMount'
     }
   },
   module: {}

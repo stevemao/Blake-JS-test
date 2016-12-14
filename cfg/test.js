@@ -26,10 +26,6 @@ module.exports = {
         loader: 'null-loader'
       },
       {
-        test: /\.json/,
-        loader: 'json-loader'
-      },
-      {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         include: [].concat(
@@ -45,12 +41,11 @@ module.exports = {
   resolve: {
     extensions: [ '', '.js', '.jsx' ],
     alias: {
-      helpers: path.join(__dirname, '/../test/helpers'),
       actions: srcPath + 'actions/',
+      helpers: path.join(__dirname, '/../test/helpers'),
       components: srcPath + 'components/',
-      containers: srcPath + '/containers/',
-      reducers: srcPath + 'reducers/',
-      store: srcPath + 'store/',
+      sources: srcPath + 'sources/',
+      stores: srcPath + 'stores/',
       styles: srcPath + 'styles/',
       config: srcPath + 'config/' + process.env.REACT_WEBPACK_ENV
     }
