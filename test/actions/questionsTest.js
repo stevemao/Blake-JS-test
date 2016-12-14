@@ -10,65 +10,33 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { fetchQuestionsIfNeeded } from 'actions';
+import fetchMock from 'fetch-mock';
 import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from 'actions/consts';
 
-const middlewares = [ thunk ];
+const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('questions actions', () => {
+  fetchMock.get('*', { hello: 'world' });
+
   it('should fetch questions', () => {
-    const page = 1;
+    const store = mockStore();
 
-    const store = mockStore({
-      questionsByPage: {}
-    });
-
-    const expectedAction1 = {
-      type: REQUEST_QUESTIONS,
-      page
-    }
-
-    return store.dispatch(fetchQuestionsIfNeeded(page))
+    return store.dispatch(fetchQuestionsIfNeeded())
       .then(() => { // return of async actions
         const actions = store.getActions();
         expect(actions.length).to.eql(2);
-        expect(actions[0]).to.eql(expectedAction1);
+        expect(actions[0].type).to.eql(REQUEST_QUESTIONS);
         expect(actions[1].type).to.eql(RECEIVE_QUESTIONS);
-        expect(actions[1].page).to.eql(page);
-      })
+        expect(actions[1].data).to.eql({
+          hello: 'world'
+        });
+      });
   });
 
   it('should cache questions', () => {
-    const store = mockStore({
-      questionsByPage: {
-        '1': {
-          data: {}
-        }
-      }
-    });
+    const store = mockStore();
 
-    expect(store.dispatch(fetchQuestionsIfNeeded(1))).to.be.an('undefined');
-  });
-
-  it('should fail', () => {
-    const page = 100000000000;
-
-    const store = mockStore({
-      questionsByPage: {}
-    });
-
-    const expectedAction1 = {
-      type: REQUEST_QUESTIONS,
-      page
-    }
-
-    return store.dispatch(fetchQuestionsIfNeeded(page))
-      .then(() => { // return of async actions
-        const actions = store.getActions();
-        expect(actions.length).to.eql(2);
-        expect(actions[0]).to.eql(expectedAction1);
-        expect(actions[1].type).to.eql(INVALID_PAGE);
-        expect(actions[1].page).to.eql(page);
-      })
+    expect(store.dispatch(fetchQuestionsIfNeeded())).to.be.an('undefined');
   });
 });

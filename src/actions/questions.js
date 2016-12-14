@@ -52,8 +52,6 @@ export function fetchQuestionsIfNeeded() {
   return (dispatch, getState) => {
     if (shouldFetchQuestions) {
       return dispatch(fetchQuestions())
-    } else {
-      return dispatch(receiveQuestions(getState().questions.data))
     }
   }
 }
