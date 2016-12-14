@@ -22,10 +22,10 @@ export function mapStateToProps(state, ownProps) {
 
 export function mapDispatchToProps (dispatch) {
   return {
-    onChange: (answer, questionId, page) => {
+    onChange(answer, questionId, page) {
       dispatch(selectAnswer(answer, questionId, page));
     },
-    onSubmit: (page) => {
+    onSubmit(page) {
       dispatch(submitAnswers(page));
     }
   }
