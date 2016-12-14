@@ -24,6 +24,11 @@ class Footer extends React.Component {
         </PageLink>
         {' '}
         <span>{page}/{pageCount}</span>
+        {' '}
+        <PageLink
+          page="progress">
+          Show Progress
+        </PageLink>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Body from '../containers/Body';
 import Footer from './Footer';
+import Progress from '../containers/Progress';
 import loading from '../images/loading.gif';
 
 const indexStyle = {
@@ -60,9 +61,14 @@ class AppComponent extends React.Component {
 
       return (
         <div className="index" style={indexStyle}>
-          <Header title={quizzes[page - 1].title} />
-          <Body questions={filterQuestions(data.questions, quizzes, page)} page={page} pageCount={pageCount} />
-          <Footer page={page} pageCount={pageCount} />
+          {this.props.params.page === 'progress' ?
+            <Progress /> :
+            <div>
+              <Header title={quizzes[page - 1].title} />
+              <Body questions={filterQuestions(data.questions, quizzes, page)} page={page} pageCount={pageCount} />
+              <Footer page={page} pageCount={pageCount} />
+            </div>
+          }
         </div>
       );
     }

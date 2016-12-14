@@ -16,15 +16,20 @@ class PageLink extends React.Component {
   render() {
     const page = this.props.page;
     const disabled = page < this.props.minPage;
-    const hide =  page > this.props.maxPage;
+    const showProgress =  page > this.props.maxPage;
     if (disabled) {
       return <span>{this.props.children}</span>
-    } else if (hide) {
-      return null;
+    }
+
+    let linkTo;
+    if (showProgress) {
+      linkTo = '/progress';
+    } else {
+      linkTo = `/${page}`;
     }
 
     return (
-      <Link to={`/${page}`} style={enabledLinkStyle}>
+      <Link to={linkTo} style={enabledLinkStyle}>
         {this.props.children}
       </Link>
     );
