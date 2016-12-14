@@ -40,7 +40,7 @@ martin.stannard@blake.com.au.
 
 ```
 npm install
-npm run serve
+npm start
 ```
 
 Browser will open `http://localhost:8000/webpack-dev-server/` automatically

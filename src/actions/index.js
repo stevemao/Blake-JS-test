@@ -30,14 +30,20 @@ function invalidPage(reason, page) {
 function fetchPosts(page) {
   return dispatch => {
     dispatch(requestPosts(page))
-    return fetch('/data/questions.json')
-      .then(response => {
-        if (!response.ok) {
-          return response.text();
-        }
-        return response.json();
-      })
-      .then(data => dispatch(receivePosts(data, page)))
+    return Promise.all([
+      fetch('/data/questions.json')
+        .then(response => {
+          return response.json();
+        }),
+      fetch('/data/quizzes.json')
+        .then(response => {
+          return response.json();
+        })
+    ])
+      .then(data => {
+        console.log(data)
+        return dispatch(receivePosts(data, page))
+      });
   }
 }
 

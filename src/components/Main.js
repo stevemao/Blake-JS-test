@@ -37,7 +37,7 @@ class AppComponent extends React.Component {
         <div className="index" style={indexStyle}>
           <Header />
           <Body hits={data.hits} />
-          <Footer page={this.props.params.page} pageCount={data.meta.page_count} />
+          <Footer page={this.props.params.page} pageCount="5" />
         </div>
       );
     }
