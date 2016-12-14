@@ -21,8 +21,7 @@ export default function (state = {
       return Object.assign({}, state, {
         isFetching: false,
         invalid: false,
-        data: action.data,
-        page: action.page
+        data: action.data
       });
     default:
       return state;

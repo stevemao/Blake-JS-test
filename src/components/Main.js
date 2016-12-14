@@ -16,62 +16,34 @@ const loadingStyle = {
   transform: 'translate(-50%, -50%)'
 }
 
-function filterQuestions(questions, quizzes, page) {
-  let questionIds = [];
-  const ret = [];
-  quizzes.some((quiz) => {
-    if (quiz.id === page) {
-      questionIds = quiz.question_ids
-      return true;
-    }
-  });
-
-  questionIds.forEach((id) => {
-    questions.some((question) => {
-      if (question.id === id) {
-        ret.push(question);
-        return true;
-      }
-    });
-  });
-
-  return ret;
-}
-
 class AppComponent extends React.Component {
   render() {
-    const props = this.props;
-    const data = props.data;
+    const questions = this.props.questions;
+    const data = questions.data;
 
-    if (props.isFetching) {
+    if (questions.isFetching) {
       return (
         <img src={loading} style={loadingStyle} />
       );
-    } else if (props.invalid) {
+    } else if (questions.invalid) {
       return (
         <div>
           Error<br />
-          {props.reason}
+          {questions.reason}
         </div>
       );
     } else if (data) {
-      let page = props.params.page;
-      if (!page) {
-        page = 1;
-      } else {
-        page = parseInt(page);
-      }
-
       const quizzes = data.quizzes;
       const pageCount = quizzes.length;
+      const page = this.props.page;
 
       return (
         <div className="index" style={indexStyle}>
-          {this.props.params.page === 'progress' ?
+          {page === 'progress' ?
             <Progress /> :
             <div>
               <Header title={quizzes[page - 1].title} />
-              <Body questions={filterQuestions(data.questions, quizzes, page)} page={page} pageCount={pageCount} />
+              <Body questions={this.props.questionsData} page={page} pageCount={pageCount} />
               <Footer page={page} pageCount={pageCount} />
             </div>
           }
@@ -87,5 +59,11 @@ class AppComponent extends React.Component {
     );
   }
 }
+
+AppComponent.defaultProps = {
+  questions: React.PropTypes.object.isRequired,
+  page: React.PropTypes.number.isRequired,
+  questionsData: React.PropTypes.array.isRequired
+};
 
 export default AppComponent;
