@@ -53,6 +53,8 @@ export function fetchPostsIfNeeded(page) {
   return (dispatch, getState) => {
     if (shouldFetchPosts) {
       return dispatch(fetchPosts(page))
+    } else {
+      return dispatch(receivePosts(getState().questions.data, page))
     }
   }
 }
