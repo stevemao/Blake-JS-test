@@ -23,7 +23,7 @@ class PageLink extends React.Component {
             if (quiz.question_ids.indexOf(question.id) !== -1) {
               if (answer === question.correct_answer) {
                 correct++;
-              } else if (answer) {
+              } else if (answer != null) {
                 incorrect++;
               } else {
                 unfinished++;
