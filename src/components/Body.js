@@ -18,7 +18,9 @@ class Body extends React.Component {
             return (
               <li key={index}>
                 <label>
-                <input type="radio" name={question.id} />
+                <input type="radio" name={question.id} value={index} onChange={(event) => {
+                  this.props.onChange(parseInt(event.currentTarget.value), question.id, this.props.page);
+                }} />
                   <span style={labelStyle}>
                     {answer}
                   </span>
@@ -32,16 +34,20 @@ class Body extends React.Component {
   }
 
   render() {
+    const showSubmit = true;
     return (
       <div>
-        {this.props.questions.map(this.mapQuestions)}
+        {this.props.questions.map(this.mapQuestions.bind(this))}
+        {showSubmit ?
+          <button onClick={this.props.onSubmit}>
+            submit
+          </button>
+          :
+          null
+        }
       </div>
     );
   }
 }
-
-Body.defaultProps = {
-  hits: React.PropTypes.array.isRequired
-};
 
 export default Body;

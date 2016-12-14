@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import Body from './Body';
+import Body from '../containers/Body';
 import Footer from './Footer';
 import loading from '../images/loading.gif';
 
@@ -58,7 +58,7 @@ class AppComponent extends React.Component {
       return (
         <div className="index" style={indexStyle}>
           <Header page={page}/>
-          <Body questions={filterQuestions(data.questions, data.quizzes, page)}/>
+          <Body questions={filterQuestions(data.questions, data.quizzes, page)} page={page}/>
           <Footer page={page} pageCount="5" />
         </div>
       );
