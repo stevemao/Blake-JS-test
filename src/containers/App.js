@@ -24,7 +24,8 @@ export function filterQuestions(questionsData, quizzes, page) {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const data = state.questions.data;
+  const questions = state.questions;
+  const data = questions.data;
 
   let page = ownProps.params.page;
   if (page !== 'progress') {
@@ -36,7 +37,7 @@ export function mapStateToProps(state, ownProps) {
   }
 
   return {
-    questions: state.questions,
+    questions,
     questionsData: data.questions ? filterQuestions(data.questions, data.quizzes, page) : null,
     page
   }
