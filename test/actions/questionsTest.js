@@ -9,13 +9,13 @@
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { fetchPostsIfNeeded } from 'actions';
+import { fetchQuestionsIfNeeded } from 'actions';
 import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from 'actions/consts';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
-describe('actions', () => {
+describe('questions actions', () => {
   it('should fetch questions', () => {
     const page = 1;
 
@@ -28,7 +28,7 @@ describe('actions', () => {
       page
     }
 
-    return store.dispatch(fetchPostsIfNeeded(page))
+    return store.dispatch(fetchQuestionsIfNeeded(page))
       .then(() => { // return of async actions
         const actions = store.getActions();
         expect(actions.length).to.eql(2);
@@ -47,7 +47,7 @@ describe('actions', () => {
       }
     });
 
-    expect(store.dispatch(fetchPostsIfNeeded(1))).to.be.an('undefined');
+    expect(store.dispatch(fetchQuestionsIfNeeded(1))).to.be.an('undefined');
   });
 
   it('should fail', () => {
@@ -62,7 +62,7 @@ describe('actions', () => {
       page
     }
 
-    return store.dispatch(fetchPostsIfNeeded(page))
+    return store.dispatch(fetchQuestionsIfNeeded(page))
       .then(() => { // return of async actions
         const actions = store.getActions();
         expect(actions.length).to.eql(2);

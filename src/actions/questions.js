@@ -1,15 +1,15 @@
 import fetch from 'isomorphic-fetch';
 import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from '../actions/consts';
 
-let shouldFetchPosts = true;
+let shouldFetchQuestions = true;
 
-function requestPosts() {
+function requestQuestions() {
   return {
     type: REQUEST_QUESTIONS
   }
 }
 
-function receivePosts(data, page) {
+function receiveQuestions(data, page) {
   if (typeof data === 'string') {
     return invalidPage(data)
   }
@@ -28,9 +28,9 @@ function invalidPage(reason) {
   }
 }
 
-function fetchPosts(page) {
+function fetchQuestions(page) {
   return dispatch => {
-    dispatch(requestPosts())
+    dispatch(requestQuestions())
     return Promise.all([
       fetch('/data/questions.json')
         .then(response => {
@@ -43,18 +43,18 @@ function fetchPosts(page) {
     ])
       .then(data => {
         let ret = Object.assign(data[0], data[1]);
-        shouldFetchPosts = false;
-        return dispatch(receivePosts(ret, page))
+        shouldFetchQuestions = false;
+        return dispatch(receiveQuestions(ret, page))
       });
   }
 }
 
-export function fetchPostsIfNeeded(page) {
+export function fetchQuestionsIfNeeded(page) {
   return (dispatch, getState) => {
-    if (shouldFetchPosts) {
-      return dispatch(fetchPosts(page))
+    if (shouldFetchQuestions) {
+      return dispatch(fetchQuestions(page))
     } else {
-      return dispatch(receivePosts(getState().questions.data, page))
+      return dispatch(receiveQuestions(getState().questions.data, page))
     }
   }
 }

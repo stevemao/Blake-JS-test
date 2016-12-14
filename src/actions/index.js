@@ -1,2 +1,2 @@
-export { fetchPostsIfNeeded } from './questions';
+export { fetchQuestionsIfNeeded } from './questions';
 export { selectAnswer, submitAnswers } from './answers';

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import configureStore from './store';
 import App from './containers/App';
-import { fetchPostsIfNeeded } from './actions';
+import { fetchQuestionsIfNeeded } from './actions';
 
 const store = configureStore();
 
@@ -18,7 +18,7 @@ class Index extends React.Component {
     if (!page) {
       page = 1;
     }
-    store.dispatch(fetchPostsIfNeeded(page));
+    store.dispatch(fetchQuestionsIfNeeded(page));
   }
 
   render() {
