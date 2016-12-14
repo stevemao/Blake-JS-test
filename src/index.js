@@ -13,7 +13,7 @@ import { fetchQuestionsIfNeeded } from './actions';
 const store = configureStore();
 
 class Index extends React.Component {
-  onEnter (state) {
+  onEnter() {
     store.dispatch(fetchQuestionsIfNeeded());
   }
 

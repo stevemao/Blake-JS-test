@@ -49,7 +49,7 @@ function fetchQuestions() {
 }
 
 export function fetchQuestionsIfNeeded() {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     if (shouldFetchQuestions) {
       return dispatch(fetchQuestions())
     }

@@ -23,4 +23,8 @@ class PageLink extends React.Component {
   }
 }
 
+PageLink.defaultProps = {
+  chartInfo: React.PropTypes.array.isRequired
+};
+
 export default PageLink;

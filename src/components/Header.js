@@ -12,4 +12,8 @@ class Header extends React.Component {
   }
 }
 
+Header.defaultProps = {
+  title: React.PropTypes.string.isRequired
+};
+
 export default Header;
