@@ -7,7 +7,7 @@
 // import React from 'react/addons';
 // const TestUtils = React.addons.TestUtils;
 
-import rootReducer from 'reducers';
+import questions from 'reducers/questions';
 import deepFreeze from 'deep-freeze';
 import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from 'actions/consts';
 
@@ -15,30 +15,27 @@ describe('reducers', () => {
   it('request questions', () => {
     const state = deepFreeze({});
 
-    const newState = rootReducer(state, {
-      type: REQUEST_QUESTIONS,
-      page: 1
+    const newState = questions(state, {
+      type: REQUEST_QUESTIONS
     });
 
-    expect(newState.questionsByPage[1]).to.eql({
+    expect(newState).to.eql({
       isFetching: true,
-      invalid: false,
-      data: {}
+      invalid: false
     });
   });
 
   it('receive questions', () => {
     const state = deepFreeze({});
 
-    const newState = rootReducer(state, {
+    const newState = questions(state, {
       type: RECEIVE_QUESTIONS,
-      page: 1,
       data: {
         foo: 'bar'
       }
     });
 
-    expect(newState.questionsByPage[1]).to.eql({
+    expect(newState).to.eql({
       isFetching: false,
       invalid: false,
       data: {
@@ -50,27 +47,25 @@ describe('reducers', () => {
   it('invalid page', () => {
     const state = deepFreeze({});
 
-    const newState = rootReducer(state, {
+    const newState = questions(state, {
       type: INVALID_PAGE,
-      page: 1,
       reason: 'foo'
     });
 
-    expect(newState.questionsByPage[1]).to.eql({
+    expect(newState).to.eql({
       isFetching: false,
       invalid: true,
-      reason: 'foo',
-      data: {}
+      reason: 'foo'
     });
   });
 
   it('unknown action', () => {
     const state = deepFreeze({});
 
-    const newState = rootReducer(state, {
+    const newState = questions(state, {
       type: 'what'
     });
 
-    expect(newState.questionsByPage).to.eql({});
+    expect(newState).to.eql({});
   });
 });

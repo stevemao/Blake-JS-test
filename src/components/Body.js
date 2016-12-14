@@ -41,10 +41,6 @@ class Body extends React.Component {
     </div>
   );
 
-  onSubmit = () => (
-    this.props.onSubmit(this.props.page)
-  )
-
   render() {
     return (
       <div>
@@ -67,8 +63,7 @@ class Body extends React.Component {
 Body.defaultProps = {
   showSubmit: React.PropTypes.bool.isRequired,
   answersOnPage: React.PropTypes.object.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  onSubmit: React.PropTypes.func.isRequired
+  onChange: React.PropTypes.func.isRequired
 };
 
 export default Body;

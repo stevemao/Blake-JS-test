@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectAnswer, submitAnswers } from '../actions';
+import { selectAnswer } from '../actions';
 import Body from '../components/Body';
 
 export function mapStateToProps(state, ownProps) {
@@ -24,9 +24,6 @@ export function mapDispatchToProps (dispatch) {
   return {
     onChange(answer, questionId, page) {
       dispatch(selectAnswer(answer, questionId, page));
-    },
-    onSubmit(page) {
-      dispatch(submitAnswers(page));
     }
   }
 }

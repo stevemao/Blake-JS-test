@@ -7,8 +7,8 @@
 // import React from 'react/addons';
 // const TestUtils = React.addons.TestUtils;
 
-import { selectAnswer, submitAnswers } from 'actions';
-import { SELECT_ANSWER, SUBMIT_ANSWERS } from 'actions/consts';
+import { selectAnswer } from 'actions';
+import { SELECT_ANSWER } from 'actions/consts';
 
 describe('answers actions', () => {
   it('should generate a "select answer" action', () => {
@@ -17,13 +17,6 @@ describe('answers actions', () => {
       answer: 1,
       questionId: 2,
       page: 3
-    });
-  });
-
-  it('should generate a "submit answers" action', () => {
-    expect(submitAnswers(1)).to.eql({
-      type: SUBMIT_ANSWERS,
-      page: 1
     });
   });
 });
