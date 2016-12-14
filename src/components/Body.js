@@ -16,7 +16,7 @@ class Body extends React.Component {
       <ol>
         {question.answers.map((answer, index) => {
           let checked;
-          const answersOnPage = this.props.answers[this.props.page];
+          const answersOnPage = this.props.answersOnPage;
 
           if (answersOnPage) {
             checked = answersOnPage[question.id] === index;
@@ -46,23 +46,12 @@ class Body extends React.Component {
   )
 
   render() {
-    let showSubmit;
-    const questions = this.props.questions;
-    const page = this.props.page;
-    const answers = this.props.answers[page];
-
-    if (answers && questions.length === Object.keys(answers).length) {
-      showSubmit = true;
-    } else {
-      showSubmit = false;
-    }
-
     return (
       <div>
-        {questions.map(this.mapQuestions)}
-        {showSubmit ?
+        {this.props.questions.map(this.mapQuestions)}
+        {this.props.showSubmit ?
           <PageLink
-            page={page + 1}
+            page={this.props.page + 1}
             minPage={1}
             maxPage={this.props.pageCount}>
             Submit
