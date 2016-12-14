@@ -27,7 +27,7 @@ class PageLink extends React.Component {
 }
 
 PageLink.defaultProps = {
-  disabled: React.PropTypes.bool.isRequired,
+  disabled: React.PropTypes.bool,
   linkTo: React.PropTypes.string.isRequired
 };
 
