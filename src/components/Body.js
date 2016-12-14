@@ -11,12 +11,12 @@ const labelStyle = {
 
 class Body extends React.Component {
   mapQuestions = (question) => (
-    <div key={question.id}>
+    <div key={question.id + ' ' + this.props.page}>
       <h2 style={h2Style}>{question.question}</h2>
       <ol>
         {question.answers.map((answer, index) => {
           return (
-            <li key={index}>
+            <li key={question.id + ' ' + index}>
               <label>
               <input type="radio" name={question.id} value={index} onChange={(event) => {
                 this.props.onChange(parseInt(event.currentTarget.value), question.id, this.props.page);
