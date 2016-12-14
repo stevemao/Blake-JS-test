@@ -1,15 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+const linkStyle = {
+  padding: '8px',
+  borderRadius: '8px',
+  color: 'black',
+  textDecoration: 'none'
+}
+
+const enabledLinkStyle = Object.assign({}, linkStyle, {
+  background: '#00FFFF'
+});
+
 class PageLink extends React.Component {
   render() {
     const page = this.props.page;
-    if (page < this.props.minPage || page > this.props.maxPage) {
+    const disabled = page < this.props.minPage || page > this.props.maxPage;
+    if (disabled) {
       return <span>{this.props.children}</span>
     }
 
     return (
-      <Link to={`/${page}`}>
+      <Link to={`/${page}`} style={enabledLinkStyle}>
         {this.props.children}
       </Link>
     );

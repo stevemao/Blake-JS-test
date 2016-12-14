@@ -8,42 +8,30 @@ function posts(state = {
 }, action) {
   switch (action.type) {
     case INVALID_PAGE:
-      return Object.assign({}, state, {
+      return {
         isFetching: false,
         invalid: true,
         reason: action.reason
-      })
+      };
     case REQUEST_POSTS:
-      return Object.assign({}, state, {
+      return {
         isFetching: true,
         invalid: false
-      })
+      };
     case RECEIVE_POSTS:
-      return Object.assign({}, state, {
+      return {
         isFetching: false,
         invalid: false,
-        data: action.data
-      })
+        data: action.data,
+        page: action.page
+      };
     default:
-      return state
-  }
-}
-
-function postsByPage(state = { }, action) {
-  switch (action.type) {
-    case INVALID_PAGE:
-    case RECEIVE_POSTS:
-    case REQUEST_POSTS:
-      return Object.assign({}, state, {
-        [action.page]: posts(state[action.page], action)
-      })
-    default:
-      return state
+      return state;
   }
 }
 
 const rootReducer = combineReducers({
-  postsByPage
+  posts
 })
 
 export default rootReducer

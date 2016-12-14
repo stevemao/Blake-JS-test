@@ -5,8 +5,7 @@ import Footer from './Footer';
 import loading from '../images/loading.gif';
 
 const indexStyle = {
-  margin: '20px auto',
-  textAlign: 'center'
+  margin: '20px auto'
 }
 
 const loadingStyle = {
@@ -14,6 +13,28 @@ const loadingStyle = {
   left: '50%',
   top: '50%',
   transform: 'translate(-50%, -50%)'
+}
+
+function filterQuestions(questions, quizzes, page) {
+  let questionIds = [];
+  const ret = [];
+  quizzes.some((quiz) => {
+    if (quiz.id === page) {
+      questionIds = quiz.question_ids
+      return true;
+    }
+  });
+
+  questionIds.forEach((id) => {
+    questions.some((question) => {
+      if (question.id === id) {
+        ret.push(question);
+        return true;
+      }
+    });
+  });
+
+  return ret;
 }
 
 class AppComponent extends React.Component {
@@ -33,18 +54,20 @@ class AppComponent extends React.Component {
         </div>
       );
     } else if (data) {
+      const page = parseInt(this.props.page);
       return (
         <div className="index" style={indexStyle}>
-          <Header />
-          <Body hits={data.hits} />
-          <Footer page={this.props.params.page} pageCount="5" />
+          <Header page={page}/>
+          <Body questions={filterQuestions(data.questions, data.quizzes, page)}/>
+          <Footer page={page} pageCount="5" />
         </div>
       );
     }
 
     return (
       <div>
-        Error
+        Error<br />
+        Unknown reason
       </div>
     );
   }

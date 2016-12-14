@@ -5,10 +5,7 @@ class Header extends React.Component {
     return (
       <header>
         <h1>
-          Lesson
-        </h1>
-        <h1>
-          Quiz
+          Quiz {this.props.page}
         </h1>
       </header>
     );

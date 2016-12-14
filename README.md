@@ -43,4 +43,6 @@ npm install
 npm start
 ```
 
-Browser will open `http://localhost:8000/webpack-dev-server/` automatically
+This will start a webpack-dev-server.
+
+Follow the instruction in the console or just open `http://localhost:8000/webpack-dev-server/` manually

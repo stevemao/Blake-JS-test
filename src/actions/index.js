@@ -1,17 +1,17 @@
 import fetch from 'isomorphic-fetch'
 import { REQUEST_POSTS, RECEIVE_POSTS, INVALID_PAGE } from './consts'
 
-function requestPosts(page) {
+function requestPosts() {
   return {
-    type: REQUEST_POSTS,
-    page
+    type: REQUEST_POSTS
   }
 }
 
 function receivePosts(data, page) {
   if (typeof data === 'string') {
-    return invalidPage(data, page)
+    return invalidPage(data)
   }
+
   return {
     type: RECEIVE_POSTS,
     data,
@@ -19,17 +19,16 @@ function receivePosts(data, page) {
   }
 }
 
-function invalidPage(reason, page) {
+function invalidPage(reason) {
   return {
     type: INVALID_PAGE,
-    reason,
-    page
+    reason
   }
 }
 
 function fetchPosts(page) {
   return dispatch => {
-    dispatch(requestPosts(page))
+    dispatch(requestPosts())
     return Promise.all([
       fetch('/data/questions.json')
         .then(response => {
@@ -41,23 +40,20 @@ function fetchPosts(page) {
         })
     ])
       .then(data => {
-        console.log(data)
-        return dispatch(receivePosts(data, page))
+        let ret = Object.assign(data[0], data[1]);
+        return dispatch(receivePosts(ret, page))
       });
   }
 }
 
-function shouldFetchPosts(state, page) {
-  if (state.hasOwnProperty(page)) {
-    return false;
-  }
-
+function shouldFetchPosts() {
+  // FIXME
   return true;
 }
 
 export function fetchPostsIfNeeded(page) {
   return (dispatch, getState) => {
-    if (shouldFetchPosts(getState().postsByPage, page)) {
+    if (shouldFetchPosts(getState())) {
       return dispatch(fetchPosts(page))
     }
   }

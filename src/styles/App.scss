@@ -1,21 +1,10 @@
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css');
-
 /* Base Application Styles */
-body {
-  font-size: 6px;
-}
-
 .index {
   width: 95%;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-
   .index {
     width: 80%;
   }
