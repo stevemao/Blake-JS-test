@@ -41,7 +41,11 @@ function fetchQuestions() {
         })
     ])
       .then(data => {
-        let ret = Object.assign(data[0], data[1]);
+        let ret = {
+          ...data[0],
+          ...data[1]
+        };
+
         shouldFetchQuestions = false;
         return dispatch(receiveQuestions(ret))
       });

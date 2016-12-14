@@ -8,9 +8,10 @@ const linkStyle = {
   textDecoration: 'none'
 }
 
-const enabledLinkStyle = Object.assign({}, linkStyle, {
+const enabledLinkStyle = {
+  ...linkStyle,
   background: '#00FFFF'
-});
+};
 
 class PageLink extends React.Component {
   render() {
