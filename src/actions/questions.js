@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from '../actions/consts';
 
 let shouldFetchQuestions = true;
@@ -9,15 +9,14 @@ function requestQuestions() {
   }
 }
 
-function receiveQuestions(data, page) {
+function receiveQuestions(data) {
   if (typeof data === 'string') {
     return invalidPage(data)
   }
 
   return {
     type: RECEIVE_QUESTIONS,
-    data,
-    page
+    data
   }
 }
 
@@ -28,7 +27,7 @@ function invalidPage(reason) {
   }
 }
 
-function fetchQuestions(page) {
+function fetchQuestions() {
   return dispatch => {
     dispatch(requestQuestions())
     return Promise.all([
@@ -44,17 +43,17 @@ function fetchQuestions(page) {
       .then(data => {
         let ret = Object.assign(data[0], data[1]);
         shouldFetchQuestions = false;
-        return dispatch(receiveQuestions(ret, page))
+        return dispatch(receiveQuestions(ret))
       });
   }
 }
 
-export function fetchQuestionsIfNeeded(page) {
+export function fetchQuestionsIfNeeded() {
   return (dispatch, getState) => {
     if (shouldFetchQuestions) {
-      return dispatch(fetchQuestions(page))
+      return dispatch(fetchQuestions())
     } else {
-      return dispatch(receiveQuestions(getState().questions.data, page))
+      return dispatch(receiveQuestions(getState().questions.data))
     }
   }
 }

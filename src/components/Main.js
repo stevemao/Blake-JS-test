@@ -55,7 +55,13 @@ class AppComponent extends React.Component {
         </div>
       );
     } else if (data) {
-      const page = parseInt(this.props.page);
+      let page = props.params.page;
+      if (!page) {
+        page = 1;
+      } else {
+        page = parseInt(page);
+      }
+
       const quizzes = data.quizzes;
       const pageCount = quizzes.length;
 

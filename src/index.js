@@ -14,11 +14,7 @@ const store = configureStore();
 
 class Index extends React.Component {
   onEnter (state) {
-    let page = state.params.page;
-    if (!page) {
-      page = 1;
-    }
-    store.dispatch(fetchQuestionsIfNeeded(page));
+    store.dispatch(fetchQuestionsIfNeeded());
   }
 
   render() {
