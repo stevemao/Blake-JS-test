@@ -24,13 +24,6 @@ class Footer extends React.Component {
         </PageLink>
         {' '}
         <span>{page}/{pageCount}</span>
-        {' '}
-        <PageLink
-          page={page + 1}
-          minPage={1}
-          maxPage={pageCount}>
-          Next
-        </PageLink>
       </div>
     );
   }

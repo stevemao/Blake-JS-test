@@ -55,11 +55,12 @@ class AppComponent extends React.Component {
       );
     } else if (data) {
       const page = parseInt(this.props.page);
+      const pageCount = data.quizzes.length;
       return (
         <div className="index" style={indexStyle}>
           <Header page={page}/>
-          <Body questions={filterQuestions(data.questions, data.quizzes, page)} page={page}/>
-          <Footer page={page} pageCount="5" />
+          <Body questions={filterQuestions(data.questions, data.quizzes, page)} page={page} pageCount={pageCount} />
+          <Footer page={page} pageCount={pageCount} />
         </div>
       );
     }

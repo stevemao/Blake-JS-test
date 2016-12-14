@@ -6,12 +6,15 @@ export default function (state = {}, action) {
       return  Object.assign({}, state, {
         [action.page]: {
           ...state[action.page],
-          [action.questionId]: action.answer,
+          [action.questionId]: action.answer
         }
       });
     case SUBMIT_ANSWERS:
       return Object.assign({}, state, {
-
+        [action.page]: {
+          ...state[action.page],
+          submitted: true
+        }
       });
     default:
       return state;

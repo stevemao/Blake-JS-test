@@ -7,6 +7,7 @@ class Header extends React.Component {
         <h1>
           Quiz {this.props.page}
         </h1>
+        
       </header>
     );
   }

@@ -15,9 +15,12 @@ const enabledLinkStyle = Object.assign({}, linkStyle, {
 class PageLink extends React.Component {
   render() {
     const page = this.props.page;
-    const disabled = page < this.props.minPage || page > this.props.maxPage;
+    const disabled = page < this.props.minPage;
+    const hide =  page > this.props.maxPage;
     if (disabled) {
       return <span>{this.props.children}</span>
+    } else if (hide) {
+      return null;
     }
 
     return (
