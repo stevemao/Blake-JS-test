@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import { REQUEST_POSTS, RECEIVE_POSTS, INVALID_PAGE } from '../actions/consts'
+import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from '../actions/consts'
 
-function posts(state = {
+function questions(state = {
   isFetching: false,
   invalid: false,
   data: {}
@@ -13,12 +13,12 @@ function posts(state = {
         invalid: true,
         reason: action.reason
       };
-    case REQUEST_POSTS:
+    case REQUEST_QUESTIONS:
       return {
         isFetching: true,
         invalid: false
       };
-    case RECEIVE_POSTS:
+    case RECEIVE_QUESTIONS:
       return {
         isFetching: false,
         invalid: false,
@@ -31,7 +31,7 @@ function posts(state = {
 }
 
 const rootReducer = combineReducers({
-  posts
+  questions
 })
 
 export default rootReducer

@@ -9,36 +9,36 @@
 
 import rootReducer from 'reducers';
 import deepFreeze from 'deep-freeze';
-import { REQUEST_POSTS, RECEIVE_POSTS, INVALID_PAGE } from 'actions/consts';
+import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from 'actions/consts';
 
 describe('reducers', () => {
-  it('request posts', () => {
+  it('request questions', () => {
     const state = deepFreeze({});
 
     const newState = rootReducer(state, {
-      type: REQUEST_POSTS,
+      type: REQUEST_QUESTIONS,
       page: 1
     });
 
-    expect(newState.postsByPage[1]).to.eql({
+    expect(newState.questionsByPage[1]).to.eql({
       isFetching: true,
       invalid: false,
       data: {}
     });
   });
 
-  it('receive posts', () => {
+  it('receive questions', () => {
     const state = deepFreeze({});
 
     const newState = rootReducer(state, {
-      type: RECEIVE_POSTS,
+      type: RECEIVE_QUESTIONS,
       page: 1,
       data: {
         foo: 'bar'
       }
     });
 
-    expect(newState.postsByPage[1]).to.eql({
+    expect(newState.questionsByPage[1]).to.eql({
       isFetching: false,
       invalid: false,
       data: {
@@ -56,7 +56,7 @@ describe('reducers', () => {
       reason: 'foo'
     });
 
-    expect(newState.postsByPage[1]).to.eql({
+    expect(newState.questionsByPage[1]).to.eql({
       isFetching: false,
       invalid: true,
       reason: 'foo',
@@ -71,6 +71,6 @@ describe('reducers', () => {
       type: 'what'
     });
 
-    expect(newState.postsByPage).to.eql({});
+    expect(newState.questionsByPage).to.eql({});
   });
 });

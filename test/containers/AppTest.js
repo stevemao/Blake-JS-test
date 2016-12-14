@@ -9,7 +9,7 @@ import { mapStateToProps } from 'containers/App';
 describe('App mapStateToProps', () => {
   it('should map to props if page doesn\'t exist', () => {
     const state = deepFreeze({
-      postsByPage: {
+      questionsByPage: {
         '2': 'data'
       }
     });
@@ -23,7 +23,7 @@ describe('App mapStateToProps', () => {
 
   it('should map to props if page exists', () => {
     const state = deepFreeze({
-      postsByPage: {
+      questionsByPage: {
         '1': 'data'
       }
     });
@@ -37,7 +37,7 @@ describe('App mapStateToProps', () => {
 
   it('should page default to 1', () => {
     const state = deepFreeze({
-      postsByPage: {
+      questionsByPage: {
         '1': 'data'
       }
     });

@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch'
-import { REQUEST_POSTS, RECEIVE_POSTS, INVALID_PAGE } from './consts'
+import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from './consts'
 
 function requestPosts() {
   return {
-    type: REQUEST_POSTS
+    type: REQUEST_QUESTIONS
   }
 }
 
@@ -13,7 +13,7 @@ function receivePosts(data, page) {
   }
 
   return {
-    type: RECEIVE_POSTS,
+    type: RECEIVE_QUESTIONS,
     data,
     page
   }

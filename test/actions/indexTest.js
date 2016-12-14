@@ -10,21 +10,21 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { fetchPostsIfNeeded } from 'actions';
-import { REQUEST_POSTS, RECEIVE_POSTS, INVALID_PAGE } from 'actions/consts';
+import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, INVALID_PAGE } from 'actions/consts';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
 describe('actions', () => {
-  it('should fetch posts', () => {
+  it('should fetch questions', () => {
     const page = 1;
 
     const store = mockStore({
-      postsByPage: {}
+      questionsByPage: {}
     });
 
     const expectedAction1 = {
-      type: REQUEST_POSTS,
+      type: REQUEST_QUESTIONS,
       page
     }
 
@@ -33,14 +33,14 @@ describe('actions', () => {
         const actions = store.getActions();
         expect(actions.length).to.eql(2);
         expect(actions[0]).to.eql(expectedAction1);
-        expect(actions[1].type).to.eql(RECEIVE_POSTS);
+        expect(actions[1].type).to.eql(RECEIVE_QUESTIONS);
         expect(actions[1].page).to.eql(page);
       })
   });
 
-  it('should cache posts', () => {
+  it('should cache questions', () => {
     const store = mockStore({
-      postsByPage: {
+      questionsByPage: {
         '1': {
           data: {}
         }
@@ -54,11 +54,11 @@ describe('actions', () => {
     const page = 100000000000;
 
     const store = mockStore({
-      postsByPage: {}
+      questionsByPage: {}
     });
 
     const expectedAction1 = {
-      type: REQUEST_POSTS,
+      type: REQUEST_QUESTIONS,
       page
     }
 
