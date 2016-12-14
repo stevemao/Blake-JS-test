@@ -9,9 +9,9 @@ export function selectAnswer(answer, questionId, page) {
   }
 }
 
-export function submitAnswers(answers) {
+export function submitAnswers(page) {
   return {
     type: SUBMIT_ANSWERS,
-    answers
+    page
   }
 }
