@@ -13,9 +13,11 @@ class PageLink extends React.Component {
           const answers = this.props.answers[quiz.id];
 
           this.props.data.questions.forEach((question) => {
-            let answer = null;
+            let answer;
             if (answers) {
               answer = answers[question.id];
+            } else {
+              answer = null;
             }
 
             if (quiz.question_ids.indexOf(question.id) !== -1) {
