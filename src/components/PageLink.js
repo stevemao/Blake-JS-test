@@ -14,22 +14,12 @@ const enabledLinkStyle = Object.assign({}, linkStyle, {
 
 class PageLink extends React.Component {
   render() {
-    const page = this.props.page;
-    const disabled = page < this.props.minPage;
-    const showProgress =  page > this.props.maxPage;
-    if (disabled) {
+    if (this.props.disabled) {
       return <span>{this.props.children}</span>
     }
 
-    let linkTo;
-    if (showProgress) {
-      linkTo = '/progress';
-    } else {
-      linkTo = `/${page}`;
-    }
-
     return (
-      <Link to={linkTo} style={enabledLinkStyle}>
+      <Link to={this.props.linkTo} style={enabledLinkStyle}>
         {this.props.children}
       </Link>
     );
@@ -37,9 +27,8 @@ class PageLink extends React.Component {
 }
 
 PageLink.defaultProps = {
-  page: React.PropTypes.number.isRequired,
-  minPage: React.PropTypes.number.isRequired,
-  maxPage: React.PropTypes.number.isRequired
+  disabled: React.PropTypes.bool.isRequired,
+  linkTo: React.PropTypes.string.isRequired
 };
 
 export default PageLink;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Pie as PieChart } from 'react-chartjs';
 
-class PageLink extends React.Component {
+class Progress extends React.Component {
   render() {
     return (
       <div>
@@ -23,8 +23,8 @@ class PageLink extends React.Component {
   }
 }
 
-PageLink.defaultProps = {
+Progress.defaultProps = {
   chartInfo: React.PropTypes.array.isRequired
 };
 
-export default PageLink;
+export default Progress;

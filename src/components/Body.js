@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLink from './PageLink';
+import PageLink from '../containers/PageLink';
 
 const h2Style = {
   fontSize: '20px'

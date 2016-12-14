@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLink from './PageLink';
+import PageLink from '../containers/PageLink';
 
 const footerStyle = {
   left: '50%',
@@ -11,8 +11,8 @@ const footerStyle = {
 
 class Footer extends React.Component {
   render() {
-    const page = parseInt(this.props.page);
-    const pageCount = parseInt(this.props.pageCount);
+    const page = this.props.page;
+    const pageCount = this.props.pageCount;
 
     return (
       <div style={footerStyle}>
