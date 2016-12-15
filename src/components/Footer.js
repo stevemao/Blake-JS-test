@@ -2,10 +2,9 @@ import React from 'react';
 import PageLink from '../containers/PageLink';
 
 const footerStyle = {
-  left: '50%',
-  transform: 'translateX(-50%)',
+  width: '100%',
   position: 'fixed',
-  bottom: '10px',
+  bottom: '15px',
   userSelect: 'none'
 }
 
