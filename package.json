@@ -69,6 +69,7 @@
   "dependencies": {
     "chart.js": "^1.1.1",
     "core-js": "^2.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-chartjs": "^0.8.0",
