@@ -13,7 +13,9 @@ npm start
 
 This will start a webpack-dev-server.
 
-Follow the instruction in the console or just open `http://localhost:8000/webpack-dev-server/` manually
+Follow the instruction in the console or just open `http://localhost:8000/` manually.
+
+*Note:* In order to see/change the url, please open in inline mode. The app is using `react-router` so the url is important.
 
 ## Unit test
 
